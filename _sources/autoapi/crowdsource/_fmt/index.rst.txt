@@ -1,0 +1,120 @@
+crowdsource._fmt
+================
+
+.. py:module:: crowdsource._fmt
+
+.. autoapi-nested-parse::
+
+   Output helpers for the crowdsource CLI.
+
+   Pure-Python, no dependency on the compiled extension — so these are unit-testable
+   on their own. Three output formats are supported everywhere: ``table`` (default,
+   human), ``json`` (for piping into ``jq``), and ``csv``.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   crowdsource._fmt.CREDIT
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   crowdsource._fmt.Column
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   crowdsource._fmt.credits
+   crowdsource._fmt.mask_key
+   crowdsource._fmt.short_id
+   crowdsource._fmt._parse_dt
+   crowdsource._fmt.time_left
+   crowdsource._fmt.render_rows
+   crowdsource._fmt._render_table
+   crowdsource._fmt.render_detail
+   crowdsource._fmt.to_csv_string
+
+
+Module Contents
+---------------
+
+.. py:data:: CREDIT
+   :value: '◎'
+
+
+.. py:function:: credits(n: object) -> str
+
+   Render a credit amount, e.g. ``◎1,240``. Non-numeric values pass through.
+
+
+.. py:function:: mask_key(key: str) -> str
+
+   Mask an API key for display: keep the prefix and last 4 chars.
+
+
+.. py:function:: short_id(value: object) -> str
+
+   First 8 chars of a UUID-ish id (the human-friendly handle).
+
+
+.. py:function:: _parse_dt(value: str) -> datetime.datetime | None
+
+   Parse an RFC 3339 / ISO 8601 timestamp; tolerate a trailing ``Z``.
+
+
+.. py:function:: time_left(end: str, now: datetime.datetime | None = None) -> str
+
+   Human countdown to ``end`` (an ISO timestamp): ``3h 14m``, ``14d``, ``closed``.
+
+
+.. py:class:: Column(key: str, header: str, render=None, align: str = 'left')
+
+   A table/csv column: a key into each row dict, a header, and a renderer.
+
+
+   .. py:attribute:: key
+
+
+   .. py:attribute:: header
+
+
+   .. py:attribute:: render
+
+
+   .. py:attribute:: align
+      :value: 'left'
+
+
+
+   .. py:method:: cell(row: dict) -> str
+
+
+.. py:function:: render_rows(rows: list[dict], columns: list[Column], fmt: str, *, file=None) -> None
+
+   Render a list of dict rows in the requested format.
+
+
+.. py:function:: _render_table(rows: list[dict], columns: list[Column], file) -> None
+
+.. py:function:: render_detail(obj: dict, fields: list[tuple[str, str]], fmt: str, *, file=None) -> None
+
+   Render a single object: ``json`` dumps it raw; ``table``/``csv`` show key/value pairs.
+
+   ``fields`` is a list of ``(label, value)`` pairs already formatted for display.
+
+
+.. py:function:: to_csv_string(rows: list[dict], columns: list[Column]) -> str
+
+   Render rows to a CSV string (test helper).
+
+

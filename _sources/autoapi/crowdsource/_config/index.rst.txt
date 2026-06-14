@@ -1,0 +1,106 @@
+crowdsource._config
+===================
+
+.. py:module:: crowdsource._config
+
+.. autoapi-nested-parse::
+
+   Config + credential resolution for the crowdsource CLI.
+
+   Credentials live in ``~/.crowdsource/config.toml`` (written ``chmod 600`` since it
+   holds an API key). The CLI resolves the server URL and API key with this
+   precedence: explicit flag → environment variable → config file → built-in default.
+
+   No third-party deps: the config is a small flat TOML table, parsed with stdlib
+   ``tomllib`` when available (3.11+) and a minimal fallback otherwise, and written
+   by hand (all values are strings).
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   crowdsource._config.DEFAULT_SERVER
+   crowdsource._config.KNOWN_KEYS
+
+
+Exceptions
+----------
+
+.. autoapisummary::
+
+   crowdsource._config.AuthError
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   crowdsource._config.config_dir
+   crowdsource._config.config_path
+   crowdsource._config._parse_toml
+   crowdsource._config.load_config
+   crowdsource._config.save_config
+   crowdsource._config.resolve_server
+   crowdsource._config.resolve_api_key
+   crowdsource._config.resolve_format
+   crowdsource._config._load_client_class
+   crowdsource._config.make_client
+
+
+Module Contents
+---------------
+
+.. py:data:: DEFAULT_SERVER
+   :value: 'https://api.crowdsource.sh'
+
+
+.. py:data:: KNOWN_KEYS
+   :value: ('api_key', 'server', 'default_format')
+
+
+.. py:function:: config_dir() -> pathlib.Path
+
+.. py:function:: config_path() -> pathlib.Path
+
+.. py:function:: _parse_toml(text: str) -> dict
+
+   Parse our flat ``key = "value"`` config. Prefers stdlib tomllib.
+
+
+.. py:function:: load_config() -> dict
+
+.. py:function:: save_config(cfg: dict) -> None
+
+   Write the config table (sorted, only known keys) with owner-only perms.
+
+
+.. py:function:: resolve_server(flag: str | None = None, cfg: dict | None = None) -> str
+
+.. py:function:: resolve_api_key(flag: str | None = None, cfg: dict | None = None) -> str | None
+
+.. py:function:: resolve_format(flag: str | None = None, cfg: dict | None = None) -> str
+
+.. py:exception:: AuthError
+
+   Bases: :py:obj:`RuntimeError`
+
+
+   No API key available for a command that requires authentication.
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+.. py:function:: _load_client_class()
+
+   Import the compiled pyo3 ``Client`` lazily (so CLI helpers stay importable).
+
+
+.. py:function:: make_client(api_key_flag: str | None, server_flag: str | None, *, require_key: bool = True)
+
+   Build a ``Client`` from resolved server + API key.
+
+

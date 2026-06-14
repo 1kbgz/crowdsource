@@ -1,0 +1,81 @@
+test_cli
+========
+
+.. py:module:: test_cli
+
+.. autoapi-nested-parse::
+
+   Unit tests for the CLI's pure helpers (no network, no compiled extension).
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   test_cli.test_scalar_value_wraps_in_value_key
+   test_cli.test_integer_value_coerced
+   test_cli.test_string_value_kept_as_string
+   test_cli.test_raw_json_passes_object_through
+   test_cli.test_s3_key_body
+   test_cli.test_file_text_used_as_payload
+   test_cli.test_stdin_scalar_text_wrapped
+   test_cli.test_stdin_json_object_passthrough
+   test_cli.test_missing_value_raises
+   test_cli.test_error_to_exit_code
+   test_cli.test_credits_symbol_and_grouping
+   test_cli.test_mask_key
+   test_cli.test_time_left_buckets
+   test_cli.test_render_rows_csv
+   test_cli.test_config_roundtrip
+   test_cli.test_resolve_precedence
+   test_cli.test_resolve_default_server
+   test_cli.test_parser_builds_and_dispatches
+   test_cli.test_parser_global_flag_before_subcommand
+   test_cli.test_apikeys_defaults_to_list
+
+
+Module Contents
+---------------
+
+.. py:function:: test_scalar_value_wraps_in_value_key()
+
+.. py:function:: test_integer_value_coerced()
+
+.. py:function:: test_string_value_kept_as_string()
+
+.. py:function:: test_raw_json_passes_object_through()
+
+.. py:function:: test_s3_key_body()
+
+.. py:function:: test_file_text_used_as_payload()
+
+.. py:function:: test_stdin_scalar_text_wrapped()
+
+.. py:function:: test_stdin_json_object_passthrough()
+
+.. py:function:: test_missing_value_raises()
+
+.. py:function:: test_error_to_exit_code(msg, code)
+
+.. py:function:: test_credits_symbol_and_grouping()
+
+.. py:function:: test_mask_key()
+
+.. py:function:: test_time_left_buckets()
+
+.. py:function:: test_render_rows_csv()
+
+.. py:function:: test_config_roundtrip(tmp_path, monkeypatch)
+
+.. py:function:: test_resolve_precedence(tmp_path, monkeypatch)
+
+.. py:function:: test_resolve_default_server(tmp_path, monkeypatch)
+
+.. py:function:: test_parser_builds_and_dispatches()
+
+.. py:function:: test_parser_global_flag_before_subcommand()
+
+.. py:function:: test_apikeys_defaults_to_list()
+

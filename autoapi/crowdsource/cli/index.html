@@ -1,0 +1,736 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../../genindex.html"><link rel="search" title="Search" href="../../../search.html">
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
+        <title>crowdsource.cli - crowdsource v0.2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/custom.css?v=890fd012" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">crowdsource <code style='font-size: var(--font-size--small--4);color: var(--sd-color-primary);'>v0.2.0</code></div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  <span class="sidebar-brand-text">crowdsource <code style='font-size: var(--font-size--small--4);color: var(--sd-color-primary);'>v0.2.0</code></span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../../_sources/autoapi/crowdsource/cli/index.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="module-crowdsource.cli">
+<span id="crowdsource-cli"></span><h1>crowdsource.cli<a class="headerlink" href="#module-crowdsource.cli" title="Link to this heading">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">crowdsource</span></code> command-line interface.</p>
+<p>A terminal-first client for the crowdsource platform — the CLI is a headline
+feature of the product, not a test harness. It is a thin wrapper over the
+compiled Rust core (the pyo3 <code class="docutils literal notranslate"><span class="pre">crowdsource.Client</span></code>): the CLI marshals arguments,
+resolves credentials, and formats output; all transport/auth/typing live in Rust.</p>
+<p>Credentials resolve flag → env → <code class="docutils literal notranslate"><span class="pre">~/.crowdsource/config.toml</span></code>. Every command
+supports <code class="docutils literal notranslate"><span class="pre">--format</span> <span class="pre">table|json|csv</span></code>. Exit codes: 0 ok, 1 usage, 2 auth,
+3 network/server, 4 insufficient credits.</p>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli.EX_OK" title="crowdsource.cli.EX_OK"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EX_OK</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli.EX_USAGE" title="crowdsource.cli.EX_USAGE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EX_USAGE</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli.EX_AUTH" title="crowdsource.cli.EX_AUTH"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EX_AUTH</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli.EX_NET" title="crowdsource.cli.EX_NET"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EX_NET</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli.EX_CREDITS" title="crowdsource.cli.EX_CREDITS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EX_CREDITS</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli._COMP_COLUMNS" title="crowdsource.cli._COMP_COLUMNS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_COMP_COLUMNS</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli._LB_COLUMNS" title="crowdsource.cli._LB_COLUMNS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_LB_COLUMNS</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli._PACK_COLUMNS" title="crowdsource.cli._PACK_COLUMNS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_PACK_COLUMNS</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli._KEY_COLUMNS" title="crowdsource.cli._KEY_COLUMNS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_KEY_COLUMNS</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli._DS_COLUMNS" title="crowdsource.cli._DS_COLUMNS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_DS_COLUMNS</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli.coerce_scalar" title="crowdsource.cli.coerce_scalar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coerce_scalar</span></code></a>(s)</p></td>
+<td><p>Parse a CLI string into int, then float, else leave it as a string.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli.build_submission_body" title="crowdsource.cli.build_submission_body"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_submission_body</span></code></a>(→ dict)</p></td>
+<td><p>Build the <code class="docutils literal notranslate"><span class="pre">submit</span></code> body. Scalars wrap into <code class="docutils literal notranslate"><span class="pre">{&quot;value&quot;:</span> <span class="pre">x}</span></code> (the platform</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli.error_to_exit_code" title="crowdsource.cli.error_to_exit_code"><code class="xref py py-obj docutils literal notranslate"><span class="pre">error_to_exit_code</span></code></a>(→ int)</p></td>
+<td><p>Map an SDK exception to a CLI exit code by inspecting its message.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli._fmt_of" title="crowdsource.cli._fmt_of"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_fmt_of</span></code></a>(→ str)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli._client" title="crowdsource.cli._client"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_client</span></code></a>(args, *, require_key)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli._tier" title="crowdsource.cli._tier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_tier</span></code></a>(→ str)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli._handle" title="crowdsource.cli._handle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_handle</span></code></a>(→ str)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_login" title="crowdsource.cli.cmd_login"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_login</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_logout" title="crowdsource.cli.cmd_logout"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_logout</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_whoami" title="crowdsource.cli.cmd_whoami"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_whoami</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_version" title="crowdsource.cli.cmd_version"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_version</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli._print_status" title="crowdsource.cli._print_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_print_status</span></code></a>(→ None)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_status" title="crowdsource.cli.cmd_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_status</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_competitions" title="crowdsource.cli.cmd_competitions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_competitions</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_competition" title="crowdsource.cli.cmd_competition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_competition</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_predict" title="crowdsource.cli.cmd_predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_predict</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_leaderboard" title="crowdsource.cli.cmd_leaderboard"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_leaderboard</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_balance" title="crowdsource.cli.cmd_balance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_balance</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_rank" title="crowdsource.cli.cmd_rank"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_rank</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_credits_packs" title="crowdsource.cli.cmd_credits_packs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_credits_packs</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_credits_buy" title="crowdsource.cli.cmd_credits_buy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_credits_buy</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_apikeys_list" title="crowdsource.cli.cmd_apikeys_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_apikeys_list</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_apikeys_create" title="crowdsource.cli.cmd_apikeys_create"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_apikeys_create</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_apikeys_delete" title="crowdsource.cli.cmd_apikeys_delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_apikeys_delete</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_datasources" title="crowdsource.cli.cmd_datasources"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_datasources</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_create" title="crowdsource.cli.cmd_create"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_create</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_publish" title="crowdsource.cli.cmd_publish"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_publish</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_close" title="crowdsource.cli.cmd_close"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_close</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_config_get" title="crowdsource.cli.cmd_config_get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_config_get</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_config_set" title="crowdsource.cli.cmd_config_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_config_set</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli.cmd_config_help" title="crowdsource.cli.cmd_config_help"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cmd_config_help</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli.build_parser" title="crowdsource.cli.build_parser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">build_parser</span></code></a>(→ argparse.ArgumentParser)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#crowdsource.cli._credits_help" title="crowdsource.cli._credits_help"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_credits_help</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#crowdsource.cli.main" title="crowdsource.cli.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a>(→ int)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="crowdsource.cli.EX_OK">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">EX_OK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#crowdsource.cli.EX_OK" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="crowdsource.cli.EX_USAGE">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">EX_USAGE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#crowdsource.cli.EX_USAGE" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="crowdsource.cli.EX_AUTH">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">EX_AUTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#crowdsource.cli.EX_AUTH" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="crowdsource.cli.EX_NET">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">EX_NET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#crowdsource.cli.EX_NET" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="crowdsource.cli.EX_CREDITS">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">EX_CREDITS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#crowdsource.cli.EX_CREDITS" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.coerce_scalar">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">coerce_scalar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#coerce_scalar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.coerce_scalar" title="Link to this definition">¶</a></dt>
+<dd><p>Parse a CLI string into int, then float, else leave it as a string.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.build_submission_body">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">build_submission_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">raw_json</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stdin_text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s3_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#build_submission_body"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.build_submission_body" title="Link to this definition">¶</a></dt>
+<dd><p>Build the <code class="docutils literal notranslate"><span class="pre">submit</span></code> body. Scalars wrap into <code class="docutils literal notranslate"><span class="pre">{&quot;value&quot;:</span> <span class="pre">x}</span></code> (the platform
+convention, see <code class="docutils literal notranslate"><span class="pre">seeds.toml</span></code>); <code class="docutils literal notranslate"><span class="pre">--json</span></code>/<code class="docutils literal notranslate"><span class="pre">--file</span></code> pass the object through;
+<code class="docutils literal notranslate"><span class="pre">--stdin</span></code> auto-detects JSON object vs scalar.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.error_to_exit_code">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">error_to_exit_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Exception</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#error_to_exit_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.error_to_exit_code" title="Link to this definition">¶</a></dt>
+<dd><p>Map an SDK exception to a CLI exit code by inspecting its message.</p>
+<p>The pyo3 layer raises <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> whose text is the RFC 7807 detail plus
+<code class="docutils literal notranslate"><span class="pre">(HTTP</span> <span class="pre">&lt;status&gt;)</span></code> for server errors, or <code class="docutils literal notranslate"><span class="pre">transport</span> <span class="pre">error:</span> <span class="pre">…</span></code> for network
+failures.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli._fmt_of">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">_fmt_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#_fmt_of"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli._fmt_of" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli._client">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">_client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">require_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#_client"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli._client" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli._tier">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">_tier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">me</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#_tier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli._tier" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli._handle">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">_handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">me</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#_handle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli._handle" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_login">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_login"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_login" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_logout">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_logout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_logout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_logout" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_whoami">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_whoami</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_whoami"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_whoami" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_version">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_version" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli._print_status">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">_print_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#_print_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli._print_status" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_status">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_status" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="crowdsource.cli._COMP_COLUMNS">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">_COMP_COLUMNS</span></span><a class="headerlink" href="#crowdsource.cli._COMP_COLUMNS" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_competitions">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_competitions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_competitions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_competitions" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_competition">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_competition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_competition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_competition" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_predict">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_predict" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="crowdsource.cli._LB_COLUMNS">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">_LB_COLUMNS</span></span><a class="headerlink" href="#crowdsource.cli._LB_COLUMNS" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_leaderboard">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_leaderboard</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_leaderboard"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_leaderboard" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_balance">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_balance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_balance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_balance" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_rank">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_rank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_rank"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_rank" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="crowdsource.cli._PACK_COLUMNS">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">_PACK_COLUMNS</span></span><a class="headerlink" href="#crowdsource.cli._PACK_COLUMNS" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_credits_packs">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_credits_packs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_credits_packs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_credits_packs" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_credits_buy">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_credits_buy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_credits_buy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_credits_buy" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="crowdsource.cli._KEY_COLUMNS">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">_KEY_COLUMNS</span></span><a class="headerlink" href="#crowdsource.cli._KEY_COLUMNS" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_apikeys_list">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_apikeys_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_apikeys_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_apikeys_list" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_apikeys_create">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_apikeys_create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_apikeys_create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_apikeys_create" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_apikeys_delete">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_apikeys_delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_apikeys_delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_apikeys_delete" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="crowdsource.cli._DS_COLUMNS">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">_DS_COLUMNS</span></span><a class="headerlink" href="#crowdsource.cli._DS_COLUMNS" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_datasources">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_datasources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_datasources"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_datasources" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_create">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_create" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_publish">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_publish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_publish"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_publish" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_close">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_close</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_close" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_config_get">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_config_get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_config_get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_config_get" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_config_set">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_config_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_config_set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_config_set" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.cmd_config_help">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">cmd_config_help</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#cmd_config_help"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.cmd_config_help" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.build_parser">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">build_parser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">argparse.ArgumentParser</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#build_parser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.build_parser" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli._credits_help">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">_credits_help</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#_credits_help"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli._credits_help" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crowdsource.cli.main">
+<span class="sig-prename descclassname"><span class="pre">crowdsource.cli.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../_modules/crowdsource/cli.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#crowdsource.cli.main" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 1kbgz
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">crowdsource.cli</a><ul>
+<li><a class="reference internal" href="#attributes">Attributes</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#crowdsource.cli.EX_OK"><code class="docutils literal notranslate"><span class="pre">EX_OK</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.EX_USAGE"><code class="docutils literal notranslate"><span class="pre">EX_USAGE</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.EX_AUTH"><code class="docutils literal notranslate"><span class="pre">EX_AUTH</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.EX_NET"><code class="docutils literal notranslate"><span class="pre">EX_NET</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.EX_CREDITS"><code class="docutils literal notranslate"><span class="pre">EX_CREDITS</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.coerce_scalar"><code class="docutils literal notranslate"><span class="pre">coerce_scalar()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.build_submission_body"><code class="docutils literal notranslate"><span class="pre">build_submission_body()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.error_to_exit_code"><code class="docutils literal notranslate"><span class="pre">error_to_exit_code()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli._fmt_of"><code class="docutils literal notranslate"><span class="pre">_fmt_of()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli._client"><code class="docutils literal notranslate"><span class="pre">_client()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli._tier"><code class="docutils literal notranslate"><span class="pre">_tier()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli._handle"><code class="docutils literal notranslate"><span class="pre">_handle()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_login"><code class="docutils literal notranslate"><span class="pre">cmd_login()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_logout"><code class="docutils literal notranslate"><span class="pre">cmd_logout()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_whoami"><code class="docutils literal notranslate"><span class="pre">cmd_whoami()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_version"><code class="docutils literal notranslate"><span class="pre">cmd_version()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli._print_status"><code class="docutils literal notranslate"><span class="pre">_print_status()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_status"><code class="docutils literal notranslate"><span class="pre">cmd_status()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli._COMP_COLUMNS"><code class="docutils literal notranslate"><span class="pre">_COMP_COLUMNS</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_competitions"><code class="docutils literal notranslate"><span class="pre">cmd_competitions()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_competition"><code class="docutils literal notranslate"><span class="pre">cmd_competition()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_predict"><code class="docutils literal notranslate"><span class="pre">cmd_predict()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli._LB_COLUMNS"><code class="docutils literal notranslate"><span class="pre">_LB_COLUMNS</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_leaderboard"><code class="docutils literal notranslate"><span class="pre">cmd_leaderboard()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_balance"><code class="docutils literal notranslate"><span class="pre">cmd_balance()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_rank"><code class="docutils literal notranslate"><span class="pre">cmd_rank()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli._PACK_COLUMNS"><code class="docutils literal notranslate"><span class="pre">_PACK_COLUMNS</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_credits_packs"><code class="docutils literal notranslate"><span class="pre">cmd_credits_packs()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_credits_buy"><code class="docutils literal notranslate"><span class="pre">cmd_credits_buy()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli._KEY_COLUMNS"><code class="docutils literal notranslate"><span class="pre">_KEY_COLUMNS</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_apikeys_list"><code class="docutils literal notranslate"><span class="pre">cmd_apikeys_list()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_apikeys_create"><code class="docutils literal notranslate"><span class="pre">cmd_apikeys_create()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_apikeys_delete"><code class="docutils literal notranslate"><span class="pre">cmd_apikeys_delete()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli._DS_COLUMNS"><code class="docutils literal notranslate"><span class="pre">_DS_COLUMNS</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_datasources"><code class="docutils literal notranslate"><span class="pre">cmd_datasources()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_create"><code class="docutils literal notranslate"><span class="pre">cmd_create()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_publish"><code class="docutils literal notranslate"><span class="pre">cmd_publish()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_close"><code class="docutils literal notranslate"><span class="pre">cmd_close()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_config_get"><code class="docutils literal notranslate"><span class="pre">cmd_config_get()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_config_set"><code class="docutils literal notranslate"><span class="pre">cmd_config_set()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.cmd_config_help"><code class="docutils literal notranslate"><span class="pre">cmd_config_help()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.build_parser"><code class="docutils literal notranslate"><span class="pre">build_parser()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli._credits_help"><code class="docutils literal notranslate"><span class="pre">_credits_help()</span></code></a></li>
+<li><a class="reference internal" href="#crowdsource.cli.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../../_static/documentation_options.js?v=938c9ccc"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/js/custom.js?v=956e5d78"></script>
+    </body>
+</html>

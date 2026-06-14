@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>crowdsource - crowdsource v0.1.0</title>
+        <title>crowdsource CLI - crowdsource v0.2.0</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">crowdsource <code style='font-size: var(--font-size--small--4);color: var(--sd-color-primary);'>v0.1.0</code></div></a>
+      <a href="index.html"><div class="brand">crowdsource <code style='font-size: var(--font-size--small--4);color: var(--sd-color-primary);'>v0.2.0</code></div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -188,7 +188,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
-  <span class="sidebar-brand-text">crowdsource <code style='font-size: var(--font-size--small--4);color: var(--sd-color-primary);'>v0.1.0</code></span>
+  <span class="sidebar-brand-text">crowdsource <code style='font-size: var(--font-size--small--4);color: var(--sd-color-primary);'>v0.2.0</code></span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -215,7 +215,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="_sources/README.md.txt" title="View this page">
+  <a class="muted-link" href="_sources/CLI-ideas.md.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -233,19 +233,201 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section class="tex2jax_ignore mathjax_ignore" id="crowdsource">
-<h1>crowdsource<a class="headerlink" href="#crowdsource" title="Link to this heading">¶</a></h1>
-<p>crowdsource.sh</p>
-<p><a class="reference external" href="https://github.com/1kbgz/crowdsource/actions/workflows/build.yaml"><img alt="Build Status" src="https://github.com/1kbgz/crowdsource/actions/workflows/build.yaml/badge.svg?branch=main&amp;event=push" /></a>
-<a class="reference external" href="https://codecov.io/gh/1kbgz/crowdsource"><img alt="codecov" src="https://codecov.io/gh/1kbgz/crowdsource/branch/main/graph/badge.svg" /></a>
-<a class="reference external" href="https://github.com/1kbgz/crowdsource"><img alt="License" src="https://img.shields.io/github/license/1kbgz/crowdsource" /></a>
-<a class="reference external" href="https://pypi.python.org/pypi/crowdsource"><img alt="PyPI" src="https://img.shields.io/pypi/v/crowdsource.svg" /></a></p>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This library was generated using <a class="reference external" href="https://copier.readthedocs.io/en/stable/">copier</a> from the <a class="reference external" href="https://github.com/python-project-templates/base">Base Python Project Template repository</a>.</p>
+          <section class="tex2jax_ignore mathjax_ignore" id="crowdsource-cli">
+<h1>crowdsource CLI<a class="headerlink" href="#crowdsource-cli" title="Link to this heading">¶</a></h1>
+<p>A terminal-first interface to the crowdsource platform. Authenticate with an API key, browse competitions, submit predictions, check rankings — all from the command line.</p>
+<section id="why-a-cli">
+<h2>Why a CLI?<a class="headerlink" href="#why-a-cli" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>API-first users (quants, ML engineers) want to automate without a browser</p></li>
+<li><p>The terminal aesthetic is core to the brand — the landing page hero IS a CLI</p></li>
+<li><p>Enables scripting: cron jobs, CI pipelines, model-output-to-submission workflows</p></li>
+<li><p>Pairs naturally with the REST API (the CLI is a thin wrapper)</p></li>
+</ul>
+</section>
+<section id="auth">
+<h2>Auth<a class="headerlink" href="#auth" title="Link to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ crowdsource login
+API key: cs_****************************
+✓ authenticated as user_0x7f (Diamond)
+
+$ crowdsource whoami
+user_0x7f · Diamond · ◎1,240 balance
+</pre></div>
 </div>
+<ul class="simple">
+<li><p>Reads API key from <code class="docutils literal notranslate"><span class="pre">--api-key</span></code>, <code class="docutils literal notranslate"><span class="pre">CROWDSOURCE_API_KEY</span></code> env var, or <code class="docutils literal notranslate"><span class="pre">~/.crowdsource/config.toml</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">crowdsource</span> <span class="pre">login</span></code> prompts and stores the key</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">crowdsource</span> <span class="pre">logout</span></code> removes stored credentials</p></li>
+</ul>
+</section>
+<section id="status-dashboard">
+<h2>Status &amp; Dashboard<a class="headerlink" href="#status-dashboard" title="Link to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ crowdsource status
+47 competitions live
+◎12,400 in active bounties
+891 predictions submitted today
+5 tiers · 12,000+ predictors
+
+$ crowdsource status --live
+(streams updates via polling)
+</pre></div>
+</div>
+</section>
+<section id="competitions">
+<h2>Competitions<a class="headerlink" href="#competitions" title="Link to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ crowdsource competitions
+ID       NAME                    TYPE      BOUNTY    PREDICTIONS  CLOSES
+c_8f2a   S&amp;P 500 Weekly Close    numeric   ◎500      142          3h 14m
+c_1b3d   BTC End of Month        numeric   ◎750      324          14d
+c_a92c   NBA Finals Winner       choice    ◎2,000    891          2mo
+c_f7e1   Fed Rate Decision       choice    ◎1,200    567          30d
+
+$ crowdsource competitions --category finance --status open
+$ crowdsource competitions --sort bounty --limit 10
+
+$ crowdsource competition c_8f2a
+S&amp;P 500 Weekly Close
+  type: numeric
+  bounty: ◎500
+  predictions: 142
+  median: 5,410
+  std dev: 42.3
+  closes: 2026-04-16T20:00:00Z (3h 14m)
+  your prediction: (none)
+</pre></div>
+</div>
+</section>
+<section id="submitting-predictions">
+<h2>Submitting Predictions<a class="headerlink" href="#submitting-predictions" title="Link to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ crowdsource predict c_8f2a 5418.50
+✓ prediction submitted for S&amp;P 500 Weekly Close
+  value: 5418.50
+  cost: ◎1
+
+$ crowdsource predict c_a92c &quot;Oklahoma City Thunder&quot;
+✓ prediction submitted for NBA Finals Winner
+  value: Oklahoma City Thunder
+  cost: ◎1
+
+# Pipe from a script / model output
+$ echo &quot;5418.50&quot; | crowdsource predict c_8f2a --stdin
+
+# Batch predict from JSON
+$ crowdsource predict --file predictions.json
+</pre></div>
+</div>
+</section>
+<section id="rankings-leaderboard">
+<h2>Rankings &amp; Leaderboard<a class="headerlink" href="#rankings-leaderboard" title="Link to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ crowdsource rank
+#47 / 12,000 · Gold ○
+accuracy: 0.847
+competitions entered: 23
+predictions: 156
+
+$ crowdsource leaderboard
+#   USER          TIER        ACCURACY
+1   user_0x7f     ◆ Diamond   0.934
+2   user_0xa3     ◇ Platinum  0.921
+3   user_0x1b     ○ Gold      0.908
+4   user_0xd2     ○ Silver    0.891
+5   user_0xf9     ○ Bronze    0.874
+
+$ crowdsource leaderboard --competition c_8f2a
+$ crowdsource leaderboard --tier diamond --limit 20
+</pre></div>
+</div>
+</section>
+<section id="credits">
+<h2>Credits<a class="headerlink" href="#credits" title="Link to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ crowdsource balance
+◎1,240 available
+  ◎1,000 purchased
+  ◎240 earned
+
+$ crowdsource credits buy 1000
+→ opening checkout in browser...
+
+$ crowdsource credits history --limit 10
+</pre></div>
+</div>
+</section>
+<section id="creating-competitions-sponsors">
+<h2>Creating Competitions (Sponsors)<a class="headerlink" href="#creating-competitions-sponsors" title="Link to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ crowdsource create \
+    --name &quot;S&amp;P 500 Weekly Close&quot; \
+    --type numeric \
+    --bounty 500 \
+    --closes &quot;2026-04-18T20:00:00Z&quot; \
+    --description &quot;Predict the S&amp;P 500 closing price on Friday&quot;
+
+✓ created competition c_8f2a (draft)
+  fee: ◎50
+  bounty: ◎500
+  total cost: ◎550
+
+$ crowdsource publish c_8f2a
+✓ competition c_8f2a is now open
+
+$ crowdsource close c_8f2a
+✓ competition c_8f2a closed
+
+$ crowdsource ground-truth c_8f2a 5412.30
+✓ ground truth set, scoring in progress...
+</pre></div>
+</div>
+</section>
+<section id="api-keys">
+<h2>API Keys<a class="headerlink" href="#api-keys" title="Link to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ crowdsource api-keys
+ID          NAME        CREATED
+k_1a2b      default     2026-04-01
+k_3c4d      ci-bot      2026-04-10
+
+$ crowdsource api-keys create --name &quot;model-runner&quot;
+✓ created key: cs_live_abc123...
+  (this is the only time the secret is shown)
+
+$ crowdsource api-keys delete k_3c4d
+✓ deleted key k_3c4d
+</pre></div>
+</div>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">¶</a></h2>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="c1"># ~/.crowdsource/config.toml</span>
+<span class="n">api_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;cs_live_abc123...&quot;</span>
+<span class="n">default_format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;table&quot;</span><span class="w">   </span><span class="c1"># table | json | csv</span>
+<span class="n">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://api.crowdsource.1kbgz.com&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ crowdsource config set default_format json
+$ crowdsource config get server
+</pre></div>
+</div>
+</section>
+<section id="output-formats">
+<h2>Output Formats<a class="headerlink" href="#output-formats" title="Link to this heading">¶</a></h2>
+<p>All commands support <code class="docutils literal notranslate"><span class="pre">--format</span></code> flag:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ crowdsource competitions --format json
+$ crowdsource competitions --format csv
+$ crowdsource competitions --format table  (default)
+</pre></div>
+</div>
+<p>JSON output for piping into <code class="docutils literal notranslate"><span class="pre">jq</span></code>, scripts, other tools.</p>
+</section>
+<section id="implementation-notes">
+<h2>Implementation Notes<a class="headerlink" href="#implementation-notes" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Entry point: <code class="docutils literal notranslate"><span class="pre">crowdsource</span></code> command via <code class="docutils literal notranslate"><span class="pre">[project.scripts]</span></code> in pyproject.toml</p></li>
+<li><p>Argument parsing: <code class="docutils literal notranslate"><span class="pre">argparse</span></code> or <code class="docutils literal notranslate"><span class="pre">click</span></code> (TBD)</p></li>
+<li><p>HTTP client: <code class="docutils literal notranslate"><span class="pre">httpx</span></code> for async support, or <code class="docutils literal notranslate"><span class="pre">requests</span></code> for simplicity</p></li>
+<li><p>Config storage: <code class="docutils literal notranslate"><span class="pre">~/.crowdsource/config.toml</span></code> via <code class="docutils literal notranslate"><span class="pre">tomllib</span></code> / <code class="docutils literal notranslate"><span class="pre">tomli-w</span></code></p></li>
+<li><p>Could also be a Rust binary (<code class="docutils literal notranslate"><span class="pre">crowdsource-cli</span></code> crate) for zero-dependency distribution</p></li>
+<li><p>API key auth via <code class="docutils literal notranslate"><span class="pre">X-API-Key</span></code> header (already supported by the server)</p></li>
+<li><p>Credit symbol: ◎ (U+25CE, bullseye)</p></li>
+</ul>
 </section>
 </section>
 
@@ -286,8 +468,19 @@
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">crowdsource</a><ul>
-<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#">crowdsource CLI</a><ul>
+<li><a class="reference internal" href="#why-a-cli">Why a CLI?</a></li>
+<li><a class="reference internal" href="#auth">Auth</a></li>
+<li><a class="reference internal" href="#status-dashboard">Status &amp; Dashboard</a></li>
+<li><a class="reference internal" href="#competitions">Competitions</a></li>
+<li><a class="reference internal" href="#submitting-predictions">Submitting Predictions</a></li>
+<li><a class="reference internal" href="#rankings-leaderboard">Rankings &amp; Leaderboard</a></li>
+<li><a class="reference internal" href="#credits">Credits</a></li>
+<li><a class="reference internal" href="#creating-competitions-sponsors">Creating Competitions (Sponsors)</a></li>
+<li><a class="reference internal" href="#api-keys">API Keys</a></li>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+<li><a class="reference internal" href="#output-formats">Output Formats</a></li>
+<li><a class="reference internal" href="#implementation-notes">Implementation Notes</a></li>
 </ul>
 </li>
 </ul>
@@ -299,7 +492,7 @@
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=01f34227"></script>
+</div><script src="_static/documentation_options.js?v=938c9ccc"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=46bd48cc"></script>

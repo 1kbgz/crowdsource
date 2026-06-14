@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
-        <title>crowdsource v0.1.0</title>
+        <title>crowdsource v0.2.0</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="#"><div class="brand">crowdsource <code style='font-size: var(--font-size--small--4);color: var(--sd-color-primary);'>v0.1.0</code></div></a>
+      <a href="#"><div class="brand">crowdsource <code style='font-size: var(--font-size--small--4);color: var(--sd-color-primary);'>v0.2.0</code></div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -188,7 +188,7 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
   
-  <span class="sidebar-brand-text">crowdsource <code style='font-size: var(--font-size--small--4);color: var(--sd-color-primary);'>v0.1.0</code></span>
+  <span class="sidebar-brand-text">crowdsource <code style='font-size: var(--font-size--small--4);color: var(--sd-color-primary);'>v0.2.0</code></span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -242,12 +242,102 @@
 <a class="reference external" href="https://codecov.io/gh/1kbgz/crowdsource"><img alt="codecov" src="https://codecov.io/gh/1kbgz/crowdsource/branch/main/graph/badge.svg" /></a>
 <a class="reference external" href="https://github.com/1kbgz/crowdsource"><img alt="License" src="https://img.shields.io/github/license/1kbgz/crowdsource" /></a>
 <a class="reference external" href="https://pypi.python.org/pypi/crowdsource"><img alt="PyPI" src="https://img.shields.io/pypi/v/crowdsource.svg" /></a></p>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This library was generated using <a class="reference external" href="https://copier.readthedocs.io/en/stable/">copier</a> from the <a class="reference external" href="https://github.com/python-project-templates/base">Base Python Project Template repository</a>.</p>
+<p>The official first-party client for the <a class="reference external" href="https://crowdsource.sh">crowdsource</a> prediction-competition platform: a single Rust core with Python, JavaScript/TypeScript, and a terminal-first <strong>CLI</strong> built on top of it. Anything you can do on the website, you can do from your shell or a script.</p>
+<section id="install">
+<h2>Install<a class="headerlink" href="#install" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>crowdsource<span class="w">          </span><span class="c1"># Python SDK + the `crowdsource` CLI</span>
+npm<span class="w"> </span>install<span class="w"> </span>@crowdsource/client<span class="w">  </span><span class="c1"># JavaScript / TypeScript (browser, via wasm)</span>
+cargo<span class="w"> </span>add<span class="w"> </span>crowdsource<span class="w">            </span><span class="c1"># Rust</span>
+</pre></div>
 </div>
+</section>
+<section id="cli">
+<h2>CLI<a class="headerlink" href="#cli" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authenticate (stored in ~/.crowdsource/config.toml, chmod 600)</span>
+$<span class="w"> </span>crowdsource<span class="w"> </span>login
+API<span class="w"> </span>key:<span class="w"> </span>cs_****************************
+✓<span class="w"> </span>authenticated<span class="w"> </span>as<span class="w"> </span>quant@example.com<span class="w"> </span><span class="o">(</span>Diamond<span class="w"> </span>L2<span class="o">)</span>
+
+$<span class="w"> </span>crowdsource<span class="w"> </span>status
+<span class="m">48</span><span class="w"> </span>competitions<span class="w"> </span>live
+◎29,400<span class="w"> </span><span class="k">in</span><span class="w"> </span>active<span class="w"> </span>bounties
+<span class="m">0</span><span class="w"> </span>predictions<span class="w"> </span>today
+<span class="m">1</span>,204<span class="w"> </span>predictors<span class="w"> </span>·<span class="w"> </span><span class="m">119</span><span class="w"> </span>competitions<span class="w"> </span>all-time
+
+$<span class="w"> </span>crowdsource<span class="w"> </span>competitions<span class="w"> </span>--status<span class="w"> </span>open<span class="w"> </span>--limit<span class="w"> </span><span class="m">3</span>
+ID<span class="w">        </span>TITLE<span class="w">              </span>TYPE<span class="w">        </span>BOUNTY<span class="w">  </span>STATUS<span class="w">  </span>CLOSES
+fa347337<span class="w">  </span>ETH/USD<span class="w"> </span>next<span class="w"> </span>hour<span class="w">  </span>regression<span class="w">    </span>◎200<span class="w">  </span>open<span class="w">        </span>6m
+daeb3525<span class="w">  </span>BTC/USD<span class="w"> </span>next<span class="w"> </span>hour<span class="w">  </span>regression<span class="w">    </span>◎200<span class="w">  </span>open<span class="w">        </span>6m
+...
+
+<span class="c1"># Submit a prediction (scalars wrap as {&quot;value&quot;: …})</span>
+$<span class="w"> </span>crowdsource<span class="w"> </span>predict<span class="w"> </span>fa347337-…<span class="w"> </span><span class="m">3845</span>.20
+✓<span class="w"> </span>prediction<span class="w"> </span>submitted<span class="w"> </span><span class="k">for</span><span class="w"> </span>ETH/USD<span class="w"> </span>next<span class="w"> </span>hour
+<span class="w">  </span>value:<span class="w"> </span><span class="o">{</span><span class="s2">&quot;value&quot;</span>:<span class="w"> </span><span class="m">3845</span>.2<span class="o">}</span>
+<span class="w">  </span>cost:<span class="w"> </span>◎5
+
+<span class="c1"># Pipe from a model / script; machine-readable output anywhere</span>
+$<span class="w"> </span>my_model.py<span class="w"> </span><span class="p">|</span><span class="w"> </span>crowdsource<span class="w"> </span>predict<span class="w"> </span>&lt;id&gt;<span class="w"> </span>--stdin
+$<span class="w"> </span>crowdsource<span class="w"> </span>competitions<span class="w"> </span>--format<span class="w"> </span>json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.[].title&#39;</span>
+</pre></div>
+</div>
+<p>Credentials resolve <code class="docutils literal notranslate"><span class="pre">--api-key</span></code> → <code class="docutils literal notranslate"><span class="pre">CROWDSOURCE_API_KEY</span></code> → <code class="docutils literal notranslate"><span class="pre">~/.crowdsource/config.toml</span></code>.
+Every command supports <code class="docutils literal notranslate"><span class="pre">--format</span> <span class="pre">table|json|csv</span></code>. Exit codes: <code class="docutils literal notranslate"><span class="pre">0</span></code> ok, <code class="docutils literal notranslate"><span class="pre">1</span></code> usage,
+<code class="docutils literal notranslate"><span class="pre">2</span></code> auth, <code class="docutils literal notranslate"><span class="pre">3</span></code> network/server, <code class="docutils literal notranslate"><span class="pre">4</span></code> insufficient credits. Run <code class="docutils literal notranslate"><span class="pre">crowdsource</span> <span class="pre">--help</span></code>
+for the full command list (<code class="docutils literal notranslate"><span class="pre">whoami</span></code>, <code class="docutils literal notranslate"><span class="pre">competition</span></code>, <code class="docutils literal notranslate"><span class="pre">leaderboard</span></code>, <code class="docutils literal notranslate"><span class="pre">balance</span></code>,
+<code class="docutils literal notranslate"><span class="pre">rank</span></code>, <code class="docutils literal notranslate"><span class="pre">credits</span></code>, <code class="docutils literal notranslate"><span class="pre">api-keys</span></code>, <code class="docutils literal notranslate"><span class="pre">create</span></code>/<code class="docutils literal notranslate"><span class="pre">publish</span></code>/<code class="docutils literal notranslate"><span class="pre">close</span></code>, <code class="docutils literal notranslate"><span class="pre">data-sources</span></code>, <code class="docutils literal notranslate"><span class="pre">config</span></code>).</p>
+</section>
+<section id="python">
+<h2>Python<a class="headerlink" href="#python" title="Link to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">crowdsource</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
+
+<span class="n">cs</span> <span class="o">=</span> <span class="n">Client</span><span class="o">.</span><span class="n">from_env</span><span class="p">()</span>  <span class="c1"># CROWDSOURCE_SERVER_URL + CROWDSOURCE_API_KEY</span>
+<span class="c1"># or: Client(&quot;https://api.crowdsource.sh&quot;, &quot;cs_sk_…&quot;)</span>
+
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cs</span><span class="o">.</span><span class="n">list_competitions</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s2">&quot;open&quot;</span><span class="p">)[</span><span class="s2">&quot;competitions&quot;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="s2">&quot;bounty_amount&quot;</span><span class="p">])</span>
+
+<span class="n">cs</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">comp_id</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;payload&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">67950.0</span><span class="p">}})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">credit_balance</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="javascript-typescript">
+<h2>JavaScript / TypeScript<a class="headerlink" href="#javascript-typescript" title="Link to this heading">¶</a></h2>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">init</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Client</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@crowdsource/client&quot;</span><span class="p">;</span>
+
+<span class="k">await</span><span class="w"> </span><span class="nx">init</span><span class="p">();</span><span class="w"> </span><span class="c1">// load the wasm module once</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">cs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Client</span><span class="p">(</span><span class="s2">&quot;https://api.crowdsource.sh&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">apiKey</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">competitions</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">cs</span><span class="p">.</span><span class="nx">listCompetitions</span><span class="p">(</span><span class="s2">&quot;open&quot;</span><span class="p">);</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">cs</span><span class="p">.</span><span class="nx">submit</span><span class="p">(</span><span class="nx">compId</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">payload</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="kt">67950.0</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">});</span>
+</pre></div>
+</div>
+</section>
+<section id="rust">
+<h2>Rust<a class="headerlink" href="#rust" title="Link to this heading">¶</a></h2>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">use</span><span class="w"> </span><span class="n">crowdsource</span><span class="p">::{</span><span class="n">Client</span><span class="p">,</span><span class="w"> </span><span class="n">CompetitionQuery</span><span class="p">,</span><span class="w"> </span><span class="n">CreateSubmission</span><span class="p">};</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="n">cs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Client</span><span class="p">::</span><span class="n">from_env</span><span class="p">()</span><span class="o">?</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">open</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs</span><span class="p">.</span><span class="n">list_competitions</span><span class="p">(</span><span class="o">&amp;</span><span class="n">CompetitionQuery</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">status</span><span class="p">:</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="s">&quot;open&quot;</span><span class="p">.</span><span class="n">parse</span><span class="p">()</span><span class="o">?</span><span class="p">),</span><span class="w"> </span><span class="o">..</span><span class="nb">Default</span><span class="p">::</span><span class="n">default</span><span class="p">()</span><span class="w"> </span><span class="p">}).</span><span class="k">await</span><span class="o">?</span><span class="p">;</span>
+<span class="n">cs</span><span class="p">.</span><span class="n">submit</span><span class="p">(</span><span class="n">comp_id</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">CreateSubmission</span><span class="p">::</span><span class="n">from_payload</span><span class="p">(</span><span class="n">serde_json</span><span class="p">::</span><span class="n">json</span><span class="o">!</span><span class="p">({</span><span class="s">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">67950.0</span><span class="p">}))).</span><span class="k">await</span><span class="o">?</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Link to this heading">¶</a></h2>
+<p>The platform accepts an API key (<code class="docutils literal notranslate"><span class="pre">X-API-Key</span></code>, both <code class="docutils literal notranslate"><span class="pre">cs_pub_…</span></code> publishable and
+<code class="docutils literal notranslate"><span class="pre">cs_sk_…</span></code> secret keys) or a session bearer token. Create and manage keys with
+<code class="docutils literal notranslate"><span class="pre">crowdsource</span> <span class="pre">api-keys</span></code>, in the web app, or via <code class="docutils literal notranslate"><span class="pre">Client.create_api_key</span></code>.</p>
+</section>
+<section id="development">
+<h2>Development<a class="headerlink" href="#development" title="Link to this heading">¶</a></h2>
+<p>This is a polyglot repo — one Rust core (<code class="docutils literal notranslate"><span class="pre">rust/</span></code>) with wasm (<code class="docutils literal notranslate"><span class="pre">js/</span></code>) and pyo3
+(<code class="docutils literal notranslate"><span class="pre">rust/python/</span></code>) bindings and a Python CLI (<code class="docutils literal notranslate"><span class="pre">crowdsource/</span></code>). See
+<a class="reference internal" href="#AGENTS.md"><span class="xref myst">AGENTS.md</span></a> and the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> (<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">develop</span></code>, <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">build</span></code>,
+<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test</span></code>, <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">lint</span></code>).</p>
+<blockquote>
+<div><p>Generated from the <a class="reference external" href="https://github.com/python-project-templates/base">Base Python Project Template</a> via <a class="reference external" href="https://copier.readthedocs.io/en/stable/">copier</a>.</p>
+</div></blockquote>
 </section>
 </section>
 
@@ -282,7 +372,7 @@
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=01f34227"></script>
+</div><script src="_static/documentation_options.js?v=938c9ccc"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=46bd48cc"></script>

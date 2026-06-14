@@ -1,0 +1,194 @@
+crowdsource.cli
+===============
+
+.. py:module:: crowdsource.cli
+
+.. autoapi-nested-parse::
+
+   The ``crowdsource`` command-line interface.
+
+   A terminal-first client for the crowdsource platform — the CLI is a headline
+   feature of the product, not a test harness. It is a thin wrapper over the
+   compiled Rust core (the pyo3 ``crowdsource.Client``): the CLI marshals arguments,
+   resolves credentials, and formats output; all transport/auth/typing live in Rust.
+
+   Credentials resolve flag → env → ``~/.crowdsource/config.toml``. Every command
+   supports ``--format table|json|csv``. Exit codes: 0 ok, 1 usage, 2 auth,
+   3 network/server, 4 insufficient credits.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   crowdsource.cli.EX_OK
+   crowdsource.cli.EX_USAGE
+   crowdsource.cli.EX_AUTH
+   crowdsource.cli.EX_NET
+   crowdsource.cli.EX_CREDITS
+   crowdsource.cli._COMP_COLUMNS
+   crowdsource.cli._LB_COLUMNS
+   crowdsource.cli._PACK_COLUMNS
+   crowdsource.cli._KEY_COLUMNS
+   crowdsource.cli._DS_COLUMNS
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   crowdsource.cli.coerce_scalar
+   crowdsource.cli.build_submission_body
+   crowdsource.cli.error_to_exit_code
+   crowdsource.cli._fmt_of
+   crowdsource.cli._client
+   crowdsource.cli._tier
+   crowdsource.cli._handle
+   crowdsource.cli.cmd_login
+   crowdsource.cli.cmd_logout
+   crowdsource.cli.cmd_whoami
+   crowdsource.cli.cmd_version
+   crowdsource.cli._print_status
+   crowdsource.cli.cmd_status
+   crowdsource.cli.cmd_competitions
+   crowdsource.cli.cmd_competition
+   crowdsource.cli.cmd_predict
+   crowdsource.cli.cmd_leaderboard
+   crowdsource.cli.cmd_balance
+   crowdsource.cli.cmd_rank
+   crowdsource.cli.cmd_credits_packs
+   crowdsource.cli.cmd_credits_buy
+   crowdsource.cli.cmd_apikeys_list
+   crowdsource.cli.cmd_apikeys_create
+   crowdsource.cli.cmd_apikeys_delete
+   crowdsource.cli.cmd_datasources
+   crowdsource.cli.cmd_create
+   crowdsource.cli.cmd_publish
+   crowdsource.cli.cmd_close
+   crowdsource.cli.cmd_config_get
+   crowdsource.cli.cmd_config_set
+   crowdsource.cli.cmd_config_help
+   crowdsource.cli.build_parser
+   crowdsource.cli._credits_help
+   crowdsource.cli.main
+
+
+Module Contents
+---------------
+
+.. py:data:: EX_OK
+   :value: 0
+
+
+.. py:data:: EX_USAGE
+   :value: 1
+
+
+.. py:data:: EX_AUTH
+   :value: 2
+
+
+.. py:data:: EX_NET
+   :value: 3
+
+
+.. py:data:: EX_CREDITS
+   :value: 4
+
+
+.. py:function:: coerce_scalar(s: str)
+
+   Parse a CLI string into int, then float, else leave it as a string.
+
+
+.. py:function:: build_submission_body(value: str | None = None, *, raw_json: bool = False, file_text: str | None = None, stdin_text: str | None = None, s3_key: str | None = None) -> dict
+
+   Build the ``submit`` body. Scalars wrap into ``{"value": x}`` (the platform
+   convention, see ``seeds.toml``); ``--json``/``--file`` pass the object through;
+   ``--stdin`` auto-detects JSON object vs scalar.
+
+
+.. py:function:: error_to_exit_code(exc: Exception) -> int
+
+   Map an SDK exception to a CLI exit code by inspecting its message.
+
+   The pyo3 layer raises ``ValueError`` whose text is the RFC 7807 detail plus
+   ``(HTTP <status>)`` for server errors, or ``transport error: …`` for network
+   failures.
+
+
+.. py:function:: _fmt_of(args) -> str
+
+.. py:function:: _client(args, *, require_key: bool)
+
+.. py:function:: _tier(me: dict) -> str
+
+.. py:function:: _handle(me: dict) -> str
+
+.. py:function:: cmd_login(args) -> int
+
+.. py:function:: cmd_logout(args) -> int
+
+.. py:function:: cmd_whoami(args) -> int
+
+.. py:function:: cmd_version(args) -> int
+
+.. py:function:: _print_status(s: dict) -> None
+
+.. py:function:: cmd_status(args) -> int
+
+.. py:data:: _COMP_COLUMNS
+
+.. py:function:: cmd_competitions(args) -> int
+
+.. py:function:: cmd_competition(args) -> int
+
+.. py:function:: cmd_predict(args) -> int
+
+.. py:data:: _LB_COLUMNS
+
+.. py:function:: cmd_leaderboard(args) -> int
+
+.. py:function:: cmd_balance(args) -> int
+
+.. py:function:: cmd_rank(args) -> int
+
+.. py:data:: _PACK_COLUMNS
+
+.. py:function:: cmd_credits_packs(args) -> int
+
+.. py:function:: cmd_credits_buy(args) -> int
+
+.. py:data:: _KEY_COLUMNS
+
+.. py:function:: cmd_apikeys_list(args) -> int
+
+.. py:function:: cmd_apikeys_create(args) -> int
+
+.. py:function:: cmd_apikeys_delete(args) -> int
+
+.. py:data:: _DS_COLUMNS
+
+.. py:function:: cmd_datasources(args) -> int
+
+.. py:function:: cmd_create(args) -> int
+
+.. py:function:: cmd_publish(args) -> int
+
+.. py:function:: cmd_close(args) -> int
+
+.. py:function:: cmd_config_get(args) -> int
+
+.. py:function:: cmd_config_set(args) -> int
+
+.. py:function:: cmd_config_help(args) -> int
+
+.. py:function:: build_parser() -> argparse.ArgumentParser
+
+.. py:function:: _credits_help(args) -> int
+
+.. py:function:: main(argv: list[str] | None = None) -> int
+
