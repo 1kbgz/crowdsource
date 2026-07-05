@@ -136,6 +136,17 @@ exclude_also = [
 ignore_errors = true
 fail_under = 50
 
+[tool.hatch.build]
+artifacts = [
+    "crowdsource/*.dll",
+    "crowdsource/*.dylib",
+    "crowdsource/*.so",
+    "crowdsource/extension",
+]
+
+[tool.hatch.build.sources]
+src = "/"
+
 [tool.hatch.build.hooks.hatch-js]
 path = "js"
 build_cmd = "build"
@@ -172,9 +183,6 @@ exclude = [
 [tool.hatch.build.targets.wheel]
 packages = [
     "crowdsource",
-]
-artifacts = [
-    "crowdsource/extension/**/*",
 ]
 exclude = [
     "js",
