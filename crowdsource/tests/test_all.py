@@ -1,4 +1,4 @@
-from crowdsource import *  # noqa
+from crowdsource import *
 
 
 def test_all():
