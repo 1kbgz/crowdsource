@@ -13,6 +13,7 @@ supports ``--format table|json|csv``. Exit codes: 0 ok, 1 usage, 2 auth,
 from __future__ import annotations
 
 import argparse
+import contextlib
 import json
 import re
 import sys
@@ -173,10 +174,8 @@ def cmd_whoami(args) -> int:
 
 def cmd_version(args) -> int:
     server = None
-    try:
+    with contextlib.suppress(Exception):
         server = _client(args, require_key=False).version()
-    except Exception:
-        pass
     if _fmt_of(args) == "json":
         fmt.render_detail({"client": __version__, "server": server}, [], "json")
         return EX_OK
@@ -291,10 +290,8 @@ def cmd_predict(args) -> int:
     client = _client(args, require_key=True)
     # Best-effort: fetch the title + fee to enrich the confirmation line.
     comp = None
-    try:
+    with contextlib.suppress(Exception):
         comp = client.get_competition(args.id)
-    except Exception:
-        pass
     row = client.submit(args.id, body)
     if _fmt_of(args) == "json":
         fmt.render_detail(row, [], "json")
@@ -388,7 +385,7 @@ def cmd_credits_packs(args) -> int:
 def cmd_credits_buy(args) -> int:
     import webbrowser
 
-    cents = int(round(args.amount * 100))
+    cents = round(args.amount * 100)
     client = _client(args, require_key=True)
     packs = (client.economic_config().get("config") or {}).get("credit_packs", [])
     valid = {p.get("price_cents") for p in packs}
@@ -400,10 +397,8 @@ def cmd_credits_buy(args) -> int:
     url = res.get("checkout_url", "")
     print(f"→ opening checkout for ${args.amount:g} in your browser…")
     print(f"  {url}")
-    try:
+    with contextlib.suppress(Exception):
         webbrowser.open(url)
-    except Exception:
-        pass
     return EX_OK
 
 

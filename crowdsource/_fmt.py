@@ -11,7 +11,7 @@ import csv
 import io
 import json
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 # Credit symbol — U+25CE BULLSEYE. The brand's unit mark.
 CREDIT = "◎"
@@ -45,7 +45,7 @@ def _parse_dt(value: str) -> datetime | None:
     if not value:
         return None
     try:
-        return datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+        return datetime.fromisoformat(str(value))
     except ValueError:
         return None
 
@@ -55,7 +55,7 @@ def time_left(end: str, now: datetime | None = None) -> str:
     dt = _parse_dt(end)
     if dt is None:
         return "—"
-    now = now or datetime.now(timezone.utc)
+    now = now or datetime.now(UTC)
     secs = int((dt - now).total_seconds())
     if secs <= 0:
         return "closed"

@@ -1,7 +1,7 @@
 """Unit tests for the CLI's pure helpers (no network, no compiled extension)."""
 
 import os
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pytest
 
@@ -77,7 +77,7 @@ def test_mask_key():
 
 
 def test_time_left_buckets():
-    now = datetime(2026, 6, 14, 12, 0, 0, tzinfo=timezone.utc)
+    now = datetime(2026, 6, 14, 12, 0, 0, tzinfo=UTC)
     assert _fmt.time_left("2026-06-14T15:14:00Z", now) == "3h 14m"
     assert _fmt.time_left("2026-06-28T12:00:00Z", now) == "14d"
     assert _fmt.time_left("2026-06-14T11:00:00Z", now) == "closed"
@@ -135,14 +135,14 @@ def test_parser_builds_and_dispatches():
     args = parser.parse_args(["competitions", "--status", "open", "--format", "json"])
     assert args.func is cli.cmd_competitions
     assert args.status == "open"
-    assert getattr(args, "format") == "json"
+    assert args.format == "json"
 
 
 def test_parser_global_flag_before_subcommand():
     parser = cli.build_parser()
     args = parser.parse_args(["--format", "csv", "balance"])
     assert args.func is cli.cmd_balance
-    assert getattr(args, "format") == "csv"
+    assert args.format == "csv"
 
 
 def test_apikeys_defaults_to_list():

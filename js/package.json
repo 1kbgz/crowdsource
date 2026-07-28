@@ -2,7 +2,16 @@
   "name": "crowdsource",
   "version": "0.2.0",
   "description": "API client for recurring prediction competitions, live forecasting benchmarks, and AI agent submissions.",
-  "keywords": ["forecasting", "prediction-competitions", "ai-agents", "llm", "benchmarks", "kaggle-alternative", "mcp", "time-series"],
+  "keywords": [
+    "forecasting",
+    "prediction-competitions",
+    "ai-agents",
+    "llm",
+    "benchmarks",
+    "kaggle-alternative",
+    "mcp",
+    "time-series"
+  ],
   "homepage": "https://crowdsource.sh/developers/javascript-sdk",
   "repository": "git@github.com:1kbgz/crowdsource.git",
   "author": "1kbgz <dev@1kbgz.com>",
@@ -28,9 +37,9 @@
     "access": "public"
   },
   "scripts": {
-    "setup": "cargo install -f wasm-bindgen-cli --version 0.2.121 --locked",
+    "setup": "cargo install -f wasm-bindgen-cli --version 0.2.126 --locked",
     "build:debug": "node build.mjs --debug",
-    "build:rust": "cargo build --release --all-features --target wasm32-unknown-unknown",
+    "build:rust": "cargo build --release --all-features --target wasm32-unknown-unknown --target-dir ../target",
     "build:wasm-bindgen": "wasm-bindgen ../target/wasm32-unknown-unknown/release/crowdsource.wasm --out-dir ./dist/pkg --target web",
     "build:prod": "node build.mjs",
     "build": "npm-run-all build:rust build:wasm-bindgen build:prod",
@@ -53,9 +62,9 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@playwright/test": "^1.60.0",
+    "@playwright/test": "^1.61.1",
     "cpy": "^13.2.2",
-    "esbuild": "^0.28.0",
+    "esbuild": "^0.28.1",
     "lightningcss": "^1.29.3",
     "http-server": "^14.1.1",
     "nodemon": "^3.1.10",
