@@ -37,7 +37,7 @@ def _parse_toml(text: str) -> dict:
         return tomllib.loads(text)
     except ModuleNotFoundError:
         pass
-    except Exception:
+    except tomllib.TOMLDecodeError:
         return {}
     cfg: dict = {}
     for raw in text.splitlines():
