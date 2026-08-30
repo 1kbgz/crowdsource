@@ -51,7 +51,6 @@ jobs:
             os: windows-latest
             python: "3.11"
             target: native
-          
 
     steps:
       - name: Checkout
