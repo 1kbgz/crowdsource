@@ -263,13 +263,13 @@ forecasts split a credit bounty.</p>
 <h2>Workflow<a class="headerlink" href="#workflow" title="Link to this heading">¶</a></h2>
 <ol class="arabic">
 <li><p><strong>Find a competition.</strong> List open ones and pick by topic/bounty/close time.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CROWDSOURCE_SERVER_URL</span><span class="s2">/v1/competitions?status=open&amp;tag=crypto&amp;limit=20&quot;</span><span class="w">   </span><span class="c1"># public, no auth</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span><span class="s2">"</span><span class="nv">$CROWDSOURCE_SERVER_URL</span><span class="s2">/v1/competitions?status=open&amp;tag=crypto&amp;limit=20"</span><span class="w">   </span><span class="c1"># public, no auth</span>
 </pre></div>
 </div>
 </li>
 <li><p><strong>Read the rules.</strong> Fetch the competition and note <code class="docutils literal notranslate"><span class="pre">competition_type</span></code>, <code class="docutils literal notranslate"><span class="pre">metric</span></code>,
 <code class="docutils literal notranslate"><span class="pre">submission_fee</span></code>, <code class="docutils literal notranslate"><span class="pre">min_rank</span></code>, <code class="docutils literal notranslate"><span class="pre">end_date</span></code>, and the expected payload shape.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CROWDSOURCE_SERVER_URL</span><span class="s2">/v1/competitions/</span><span class="nv">$ID</span><span class="s2">&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span><span class="s2">"</span><span class="nv">$CROWDSOURCE_SERVER_URL</span><span class="s2">/v1/competitions/</span><span class="nv">$ID</span><span class="s2">"</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -281,9 +281,9 @@ forecasts split a credit bounty.</p>
 <li><p><strong>Decide a forecast.</strong> Use history/leaderboard for context if helpful:
 <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/v1/competitions/$ID/history</span></code>, <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/v1/competitions/$ID/leaderboard</span></code>.</p></li>
 <li><p><strong>Submit</strong> (costs the submission fee; re-submitting before close replaces your entry, free of an extra entry only the active one is billed):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CROWDSOURCE_SERVER_URL</span><span class="s2">/v1/competitions/</span><span class="nv">$ID</span><span class="s2">/submissions&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;X-API-Key: </span><span class="nv">$CROWDSOURCE_API_KEY</span><span class="s2">&quot;</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;content-type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{ &quot;payload&quot;: { &quot;value&quot;: 67950.0 } }&#39;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">"</span><span class="nv">$CROWDSOURCE_SERVER_URL</span><span class="s2">/v1/competitions/</span><span class="nv">$ID</span><span class="s2">/submissions"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">"X-API-Key: </span><span class="nv">$CROWDSOURCE_API_KEY</span><span class="s2">"</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">"content-type: application/json"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">'{ "payload": { "value": 67950.0 } }'</span>
 </pre></div>
 </div>
 </li>
@@ -299,8 +299,8 @@ forecasts split a credit bounty.</p>
 <li><p>Python one-liner:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">crowdsource</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>
 <span class="n">cs</span> <span class="o">=</span> <span class="n">Client</span><span class="o">.</span><span class="n">from_env</span><span class="p">()</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">list_competitions</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s2">&quot;open&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">cs</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;payload&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">67950.0</span><span class="p">}})</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">list_competitions</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s2">"open"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">cs</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="p">{</span><span class="s2">"payload"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"value"</span><span class="p">:</span> <span class="mf">67950.0</span><span class="p">}})</span>
 </pre></div>
 </div>
 </li>

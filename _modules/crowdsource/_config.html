@@ -240,7 +240,7 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for crowdsource._config</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;Config + credential resolution for the crowdsource CLI.</span>
+<span></span><span class="sd">"""Config + credential resolution for the crowdsource CLI.</span>
 
 <span class="sd">Credentials live in ``~/.crowdsource/config.toml`` (written ``chmod 600`` since it</span>
 <span class="sd">holds an API key). The CLI resolves the server URL and API key with this</span>
@@ -249,38 +249,38 @@
 <span class="sd">No third-party deps: the config is a small flat TOML table, parsed with stdlib</span>
 <span class="sd">``tomllib`` when available (3.11+) and a minimal fallback otherwise, and written</span>
 <span class="sd">by hand (all values are strings).</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
-<span class="c1"># Matches the Rust core&#39;s ``DEFAULT_BASE_URL`` (crowdsource::client).</span>
-<span class="n">DEFAULT_SERVER</span> <span class="o">=</span> <span class="s2">&quot;https://api.crowdsource.sh&quot;</span>
+<span class="c1"># Matches the Rust core's ``DEFAULT_BASE_URL`` (crowdsource::client).</span>
+<span class="n">DEFAULT_SERVER</span> <span class="o">=</span> <span class="s2">"https://api.crowdsource.sh"</span>
 
 <span class="c1"># Keys the CLI recognizes in config.toml / ``config set``.</span>
-<span class="n">KNOWN_KEYS</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;api_key&quot;</span><span class="p">,</span> <span class="s2">&quot;server&quot;</span><span class="p">,</span> <span class="s2">&quot;default_format&quot;</span><span class="p">)</span>
+<span class="n">KNOWN_KEYS</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"api_key"</span><span class="p">,</span> <span class="s2">"server"</span><span class="p">,</span> <span class="s2">"default_format"</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="config_dir">
 <a class="viewcode-back" href="../../autoapi/crowdsource/_config/index.html#crowdsource._config.config_dir">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">config_dir</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;CROWDSOURCE_CONFIG_DIR&quot;</span><span class="p">,</span> <span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;.crowdsource&quot;</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"CROWDSOURCE_CONFIG_DIR"</span><span class="p">,</span> <span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span> <span class="o">/</span> <span class="s2">".crowdsource"</span><span class="p">))</span></div>
 
 
 
 <div class="viewcode-block" id="config_path">
 <a class="viewcode-back" href="../../autoapi/crowdsource/_config/index.html#crowdsource._config.config_path">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">config_path</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">config_dir</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;config.toml&quot;</span></div>
+    <span class="k">return</span> <span class="n">config_dir</span><span class="p">()</span> <span class="o">/</span> <span class="s2">"config.toml"</span></div>
 
 
 
 <div class="viewcode-block" id="_parse_toml">
 <a class="viewcode-back" href="../../autoapi/crowdsource/_config/index.html#crowdsource._config._parse_toml">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">_parse_toml</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse our flat ``key = &quot;value&quot;`` config. Prefers stdlib tomllib.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Parse our flat ``key = "value"`` config. Prefers stdlib tomllib."""</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="kn">import</span><span class="w"> </span><span class="nn">tomllib</span>
 
@@ -291,11 +291,11 @@
         <span class="k">return</span> <span class="p">{}</span>
     <span class="n">cfg</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">raw</span> <span class="ow">in</span> <span class="n">text</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
-        <span class="n">line</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span> <span class="ow">or</span> <span class="s2">&quot;=&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"#"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span> <span class="ow">or</span> <span class="s2">"="</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
             <span class="k">continue</span>
-        <span class="n">key</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
-        <span class="n">cfg</span><span class="p">[</span><span class="n">key</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">)</span>
+        <span class="n">key</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s2">"="</span><span class="p">)</span>
+        <span class="n">cfg</span><span class="p">[</span><span class="n">key</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">'"'</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">"'"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">cfg</span></div>
 
 
@@ -316,14 +316,14 @@
 <div class="viewcode-block" id="save_config">
 <a class="viewcode-back" href="../../autoapi/crowdsource/_config/index.html#crowdsource._config.save_config">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">save_config</span><span class="p">(</span><span class="n">cfg</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Write the config table (sorted, only known keys) with owner-only perms.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Write the config table (sorted, only known keys) with owner-only perms."""</span>
     <span class="n">path</span> <span class="o">=</span> <span class="n">config_path</span><span class="p">()</span>
     <span class="n">path</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;# crowdsource CLI config — created automatically.&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">]</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"# crowdsource CLI config — created automatically."</span><span class="p">,</span> <span class="s2">""</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">cfg</span><span class="p">):</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="n">key</span><span class="p">])</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\\\\</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
-        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1"> = &quot;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
-    <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="n">key</span><span class="p">])</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"</span><span class="se">\\</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"</span><span class="se">\\\\</span><span class="s2">"</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'"'</span><span class="p">,</span> <span class="s1">'</span><span class="se">\\</span><span class="s1">"'</span><span class="p">)</span>
+        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1"> = "</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">"'</span><span class="p">)</span>
+    <span class="n">path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">path</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="mo">0o600</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
@@ -335,7 +335,7 @@
 <a class="viewcode-back" href="../../autoapi/crowdsource/_config/index.html#crowdsource._config.resolve_server">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">resolve_server</span><span class="p">(</span><span class="n">flag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="n">cfg</span> <span class="o">=</span> <span class="n">load_config</span><span class="p">()</span> <span class="k">if</span> <span class="n">cfg</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">cfg</span>
-    <span class="k">return</span> <span class="n">flag</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;CROWDSOURCE_SERVER_URL&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">cfg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;server&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">DEFAULT_SERVER</span></div>
+    <span class="k">return</span> <span class="n">flag</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"CROWDSOURCE_SERVER_URL"</span><span class="p">)</span> <span class="ow">or</span> <span class="n">cfg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"server"</span><span class="p">)</span> <span class="ow">or</span> <span class="n">DEFAULT_SERVER</span></div>
 
 
 
@@ -343,7 +343,7 @@
 <a class="viewcode-back" href="../../autoapi/crowdsource/_config/index.html#crowdsource._config.resolve_api_key">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">resolve_api_key</span><span class="p">(</span><span class="n">flag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
     <span class="n">cfg</span> <span class="o">=</span> <span class="n">load_config</span><span class="p">()</span> <span class="k">if</span> <span class="n">cfg</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">cfg</span>
-    <span class="k">return</span> <span class="n">flag</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;CROWDSOURCE_API_KEY&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">cfg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;api_key&quot;</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">flag</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"CROWDSOURCE_API_KEY"</span><span class="p">)</span> <span class="ow">or</span> <span class="n">cfg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"api_key"</span><span class="p">)</span></div>
 
 
 
@@ -351,21 +351,21 @@
 <a class="viewcode-back" href="../../autoapi/crowdsource/_config/index.html#crowdsource._config.resolve_format">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">resolve_format</span><span class="p">(</span><span class="n">flag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="n">cfg</span> <span class="o">=</span> <span class="n">load_config</span><span class="p">()</span> <span class="k">if</span> <span class="n">cfg</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">cfg</span>
-    <span class="k">return</span> <span class="n">flag</span> <span class="ow">or</span> <span class="n">cfg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;default_format&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;table&quot;</span></div>
+    <span class="k">return</span> <span class="n">flag</span> <span class="ow">or</span> <span class="n">cfg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"default_format"</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">"table"</span></div>
 
 
 
 <div class="viewcode-block" id="AuthError">
 <a class="viewcode-back" href="../../autoapi/crowdsource/_config/index.html#crowdsource._config.AuthError">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">AuthError</span><span class="p">(</span><span class="ne">RuntimeError</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;No API key available for a command that requires authentication.&quot;&quot;&quot;</span></div>
+<span class="w">    </span><span class="sd">"""No API key available for a command that requires authentication."""</span></div>
 
 
 
 <div class="viewcode-block" id="_load_client_class">
 <a class="viewcode-back" href="../../autoapi/crowdsource/_config/index.html#crowdsource._config._load_client_class">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">_load_client_class</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Import the compiled pyo3 ``Client`` lazily (so CLI helpers stay importable).&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Import the compiled pyo3 ``Client`` lazily (so CLI helpers stay importable)."""</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">crowdsource.crowdsource</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span>  <span class="c1"># type: ignore</span>
 
     <span class="k">return</span> <span class="n">Client</span></div>
@@ -375,12 +375,12 @@
 <div class="viewcode-block" id="make_client">
 <a class="viewcode-back" href="../../autoapi/crowdsource/_config/index.html#crowdsource._config.make_client">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">make_client</span><span class="p">(</span><span class="n">api_key_flag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">server_flag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">require_key</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Build a ``Client`` from resolved server + API key.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Build a ``Client`` from resolved server + API key."""</span>
     <span class="n">cfg</span> <span class="o">=</span> <span class="n">load_config</span><span class="p">()</span>
     <span class="n">server</span> <span class="o">=</span> <span class="n">resolve_server</span><span class="p">(</span><span class="n">server_flag</span><span class="p">,</span> <span class="n">cfg</span><span class="p">)</span>
     <span class="n">api_key</span> <span class="o">=</span> <span class="n">resolve_api_key</span><span class="p">(</span><span class="n">api_key_flag</span><span class="p">,</span> <span class="n">cfg</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">require_key</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">api_key</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">AuthError</span><span class="p">(</span><span class="s2">&quot;no API key found. Run `crowdsource login`, pass --api-key, or set CROWDSOURCE_API_KEY.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">AuthError</span><span class="p">(</span><span class="s2">"no API key found. Run `crowdsource login`, pass --api-key, or set CROWDSOURCE_API_KEY."</span><span class="p">)</span>
     <span class="n">Client</span> <span class="o">=</span> <span class="n">_load_client_class</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">Client</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">api_key</span><span class="p">)</span></div>
 

@@ -272,12 +272,12 @@ platform can extract. Validate the URL + <code class="docutils literal notransla
 <h2>Workflow<a class="headerlink" href="#workflow" title="Link to this heading">¶</a></h2>
 <ol class="arabic">
 <li><p><strong>Fetch it</strong> and confirm 200 + JSON:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-fsS<span class="w"> </span><span class="s2">&quot;https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&amp;vs_currencies=usd&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-fsS<span class="w"> </span><span class="s2">"https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&amp;vs_currencies=usd"</span>
 </pre></div>
 </div>
 </li>
 <li><p><strong>Apply the path</strong> and confirm a finite number falls out:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-fsS<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$URL</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import sys,json; d=json.load(sys.stdin); print(d[&#39;bitcoin&#39;][&#39;usd&#39;])&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-fsS<span class="w"> </span><span class="s2">"</span><span class="nv">$URL</span><span class="s2">"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">"import sys,json; d=json.load(sys.stdin); print(d['bitcoin']['usd'])"</span>
 </pre></div>
 </div>
 <p>For an aggregator/wildcard, sum/avg the matched leaves and confirm it’s numeric.</p>

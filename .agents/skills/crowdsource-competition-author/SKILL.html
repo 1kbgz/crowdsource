@@ -277,19 +277,19 @@ a competition charges a creation fee and escrows the bounty, so the owner needs 
 <ol class="arabic">
 <li><p><strong>Pick an oracle</strong> (public, key-free HTTPS) and the <code class="docutils literal notranslate"><span class="pre">resolution_path</span></code> that extracts one number. Validate it (oracle-validator skill).</p></li>
 <li><p><strong>Create the draft:</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CROWDSOURCE_SERVER_URL</span><span class="s2">/v1/competitions&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;X-API-Key: </span><span class="nv">$CROWDSOURCE_API_KEY</span><span class="s2">&quot;</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;content-type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
-<span class="s1">    &quot;title&quot;: &quot;BTC/USD daily close&quot;,</span>
-<span class="s1">    &quot;description&quot;: &quot;Predict the BTC/USD price at 00:00 UTC. Submit {\&quot;value\&quot;: &lt;price&gt;}.&quot;,</span>
-<span class="s1">    &quot;competition_type&quot;: &quot;regression&quot;,</span>
-<span class="s1">    &quot;metric&quot;: &quot;rmse&quot;,</span>
-<span class="s1">    &quot;bounty_amount&quot;: 500, &quot;bounty_mode&quot;: &quot;top_n_weighted&quot;, &quot;bounty_top_n&quot;: 3, &quot;bounty_weights&quot;: [50,30,20],</span>
-<span class="s1">    &quot;end_date&quot;: &quot;2026-07-01T00:00:00Z&quot;,</span>
-<span class="s1">    &quot;oracle_url&quot;: &quot;https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&amp;vs_currencies=usd&quot;,</span>
-<span class="s1">    &quot;resolution_path&quot;: &quot;bitcoin.usd&quot;,</span>
-<span class="s1">    &quot;recurring_interval&quot;: &quot;daily&quot;, &quot;recurring_close_time&quot;: &quot;00:00&quot;, &quot;recurring_timezone&quot;: &quot;UTC&quot;</span>
-<span class="s1">  }&#39;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">"</span><span class="nv">$CROWDSOURCE_SERVER_URL</span><span class="s2">/v1/competitions"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">"X-API-Key: </span><span class="nv">$CROWDSOURCE_API_KEY</span><span class="s2">"</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">"content-type: application/json"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">'{</span>
+<span class="s1">    "title": "BTC/USD daily close",</span>
+<span class="s1">    "description": "Predict the BTC/USD price at 00:00 UTC. Submit {\"value\": &lt;price&gt;}.",</span>
+<span class="s1">    "competition_type": "regression",</span>
+<span class="s1">    "metric": "rmse",</span>
+<span class="s1">    "bounty_amount": 500, "bounty_mode": "top_n_weighted", "bounty_top_n": 3, "bounty_weights": [50,30,20],</span>
+<span class="s1">    "end_date": "2026-07-01T00:00:00Z",</span>
+<span class="s1">    "oracle_url": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&amp;vs_currencies=usd",</span>
+<span class="s1">    "resolution_path": "bitcoin.usd",</span>
+<span class="s1">    "recurring_interval": "daily", "recurring_close_time": "00:00", "recurring_timezone": "UTC"</span>
+<span class="s1">  }'</span>
 </pre></div>
 </div>
 </li>
