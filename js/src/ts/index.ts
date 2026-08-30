@@ -1,4 +1,4 @@
-import init, { Client } from "../../dist/pkg/crowdsource";
+import init from "../../dist/pkg/crowdsource";
 
 // wasm-bindgen (--target web) emits a default `init()` that loads the .wasm.
 // Await it once before constructing a Client:
