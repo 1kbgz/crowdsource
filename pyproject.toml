@@ -44,6 +44,7 @@ develop = [
     "hatch-rs",
     "hatchling",
     "mdformat",
+    "mdformat-frontmatter",
     "mdformat-tables>=1",
     "pytest",
     "pytest-cov",
@@ -130,7 +131,7 @@ skip = "*win32 *arm64"
 [tool.coverage.run]
 branch = true
 omit = [
-    "crowdsource/tests/integration/",
+    "crowdsource/tests/integration/*",
 ]
 
 [tool.coverage.report]
@@ -144,9 +145,6 @@ fail_under = 50
 
 [tool.hatch.build]
 artifacts = [
-    "crowdsource/*.dll",
-    "crowdsource/*.dylib",
-    "crowdsource/*.so",
     "crowdsource/extension",
 ]
 
@@ -176,9 +174,10 @@ packages = [
     "Cargo.lock",
 ]
 exclude = [
-    "crowdsource/*.dll",
-    "crowdsource/*.dylib",
-    "crowdsource/*.so",
+    "*.dll",
+    "*.dylib",
+    "*.so",
+    "*.pyd",
     "crowdsource/extension",
     "js/dist",
     "js/node_modules",
@@ -187,6 +186,12 @@ exclude = [
 ]
 
 [tool.hatch.build.targets.wheel]
+artifacts = [
+    "crowdsource/*.dll",
+    "crowdsource/*.dylib",
+    "crowdsource/*.so",
+    "crowdsource/extension",
+]
 packages = [
     "crowdsource",
 ]
