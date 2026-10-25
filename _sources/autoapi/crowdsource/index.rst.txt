@@ -13,6 +13,7 @@ Submodules
    /autoapi/crowdsource/_config/index
    /autoapi/crowdsource/_fmt/index
    /autoapi/crowdsource/cli/index
+   /autoapi/crowdsource/crowdsource/index
 
 
 Attributes

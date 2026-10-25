@@ -52,7 +52,7 @@ Module Contents
    :value: '◎'
 
 
-.. py:function:: credits(n: object) -> str
+.. py:function:: credits(n: Any) -> str
 
    Render a credit amount, e.g. ``◎1,240``. Non-numeric values pass through.
 

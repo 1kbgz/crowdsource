@@ -1,0 +1,134 @@
+crowdsource.crowdsource
+=======================
+
+.. py:module:: crowdsource.crowdsource
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   crowdsource.crowdsource.Client
+
+
+Module Contents
+---------------
+
+.. py:class:: Client(base_url: str, api_key: str | None = None)
+
+   .. py:method:: from_env() -> Client
+      :staticmethod:
+
+
+
+   .. py:method:: with_bearer(base_url: str, bearer_token: str) -> Client
+      :staticmethod:
+
+
+
+   .. py:method:: summary() -> Any
+
+
+   .. py:method:: events(limit: int | None = None) -> Any
+
+
+   .. py:method:: economic_config() -> Any
+
+
+   .. py:method:: me() -> Any
+
+
+   .. py:method:: update_me(patch: Any) -> Any
+
+
+   .. py:method:: credit_balance() -> Any
+
+
+   .. py:method:: profile(handle: str) -> Any
+
+
+   .. py:method:: request_access(competition_id: str) -> Any
+
+
+   .. py:method:: manage_access(competition_id: str, handle: str, action: str) -> Any
+
+
+   .. py:method:: list_access(competition_id: str) -> Any
+
+
+   .. py:method:: gift_credits(recipient_handle: str, amount: int, message: str | None = None) -> Any
+
+
+   .. py:method:: get_org(org_id: str) -> Any
+
+
+   .. py:method:: list_competitions(status: str | None = None, competition_type: str | None = None, limit: int | None = None, offset: int | None = None, mine: bool | None = None, hosted: bool | None = None, tag: str | None = None, needs_resolution: bool | None = None, sort: str | None = None) -> Any
+
+
+   .. py:method:: get_competition(id: str) -> Any
+
+
+   .. py:method:: create_competition(req: Any) -> Any
+
+
+   .. py:method:: publish_competition(id: str) -> Any
+
+
+   .. py:method:: close_competition(id: str) -> Any
+
+
+   .. py:method:: leaderboard(id: str) -> Any
+
+
+   .. py:method:: input_source(id: str) -> Any
+
+
+   .. py:method:: competition_index(id: str) -> Any
+
+
+   .. py:method:: competition_index_template(id: str) -> str
+
+
+   .. py:method:: infer_schema(file: bytes | None = None, filename: str | None = None, url: str | None = None, format: str | None = None, auth_header: str | None = None) -> Any
+
+
+   .. py:method:: resolution_file(id: str, filename: str, bytes: Client.resolution_file.bytes, index_column: str | None = None, target_column: str | None = None, format: str | None = None) -> None
+
+
+   .. py:method:: submit(competition_id: str, body: Any) -> Any
+
+
+   .. py:method:: list_submissions(competition_id: str) -> Any
+
+
+   .. py:method:: list_my_submissions() -> Any
+
+
+   .. py:method:: retract_submission(competition_id: str) -> Any
+
+
+   .. py:method:: list_api_keys() -> Any
+
+
+   .. py:method:: create_api_key(name: str) -> Any
+
+
+   .. py:method:: delete_api_key(id: str) -> None
+
+
+   .. py:method:: list_data_sources() -> Any
+
+
+   .. py:method:: create_data_source(req: Any) -> Any
+
+
+   .. py:method:: rank_up() -> Any
+
+
+   .. py:method:: rank_down() -> Any
+
+
+   .. py:method:: create_checkout(amount_cents: int) -> Any
+
+
