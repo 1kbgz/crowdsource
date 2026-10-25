@@ -95,7 +95,7 @@ class AuthError(RuntimeError):
 
 def _load_client_class():
     """Import the compiled pyo3 ``Client`` lazily (so CLI helpers stay importable)."""
-    from crowdsource.crowdsource import Client  # type: ignore
+    from crowdsource.crowdsource import Client
 
     return Client
 

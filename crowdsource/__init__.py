@@ -6,4 +6,4 @@ __version__ = "0.2.0"
 try:
     from .crowdsource import Client
 except ImportError:  # pragma: no cover - extension not built
-    Client = None  # type: ignore
+    Client = None

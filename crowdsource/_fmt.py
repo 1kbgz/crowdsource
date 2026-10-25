@@ -12,12 +12,13 @@ import io
 import json
 import sys
 from datetime import UTC, datetime
+from typing import Any
 
 # Credit symbol — U+25CE BULLSEYE. The brand's unit mark.
 CREDIT = "◎"
 
 
-def credits(n: object) -> str:
+def credits(n: Any) -> str:
     """Render a credit amount, e.g. ``◎1,240``. Non-numeric values pass through."""
     try:
         return f"{CREDIT}{int(n):,}"
