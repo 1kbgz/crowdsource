@@ -23,9 +23,6 @@ uuid = "1"
 panic = 'abort'
 lto = true
 
-[profile.test.junit]
-path = "junit.xml"
-
 [workspace]
 members = [
     "js",
